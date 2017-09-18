@@ -1,11 +1,14 @@
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.lang.reflect.Field;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import anotaciones.BotonAnnotation;
 
 import anotaciones.TTextArea;
 
@@ -29,12 +32,37 @@ public class Prueba {
 		JFrame frame = new JFrame("Test");
 		frame.setLayout(new GridLayout(5,1));
 		
+		JButton boton = new JButton("boton");
+		Field[] b1 = MostrarBoton.class.getDeclaredFields();
+	
 		
+			
+		for(Field b : b1){
+			if (b.isAnnotationPresent(BotonAnnotation.class)){
+				BotonAnnotation botonazo = b.getAnnotation(BotonAnnotation.class);
+				boton.setVisible(true);
+				float posicionX = botonazo.posHorizontal();
+				float posicionY= botonazo.posVertical();
+				int ancho = botonazo.ancho();
+				int largo = botonazo.largo();
+				String nombre = botonazo.nombre();
+				Dimension tamaño= new Dimension(ancho,largo);
+				boton.setAlignmentX(posicionX);
+				boton.setAlignmentY(posicionY);
+				boton.setSize(tamaño);
+				boton.setLabel(nombre);
+				frame.getContentPane().add(boton);
+				
+				
+				
+			}
+		}
+				
 		for(Field f : fields){
 		      if (f.isAnnotationPresent(TTextArea.class)){
 		    	  TTextArea ta = f.getAnnotation(TTextArea.class);
 				  frame.setVisible(true);
-				  frame.setSize(500,200);
+				  frame.setSize(2200,200);
 				  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				  
 				  
@@ -66,4 +94,12 @@ class ShowAnotacion{
 	public void showAnottation(){}
 	
 
+}
+
+class MostrarBoton {
+	@BotonAnnotation(nombre = "botonazo",posHorizontal=1, posVertical=2, ancho=2, largo=1)
+	private int a;
+	
+	public void mostrarBoton(){}
+	
 }
