@@ -6,10 +6,11 @@ import java.lang.reflect.Field;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import anotaciones.BotonAnnotation;
-
+import anotaciones.RadioButtonAnnotation;
 import anotaciones.TTextArea;
 
 public class Prueba {
@@ -34,8 +35,6 @@ public class Prueba {
 		
 		JButton boton = new JButton("boton");
 		Field[] b1 = MostrarBoton.class.getDeclaredFields();
-	
-		
 			
 		for(Field b : b1){
 			if (b.isAnnotationPresent(BotonAnnotation.class)){
@@ -81,7 +80,21 @@ public class Prueba {
 				  System.out.println(ta.label());
 		      }
 		}
-		  
+		
+		
+		JRadioButton radioButton = new JRadioButton("radio");
+		Field[] bandera = MostrarRadio.class.getDeclaredFields();
+		
+		for(Field ban : bandera){
+		      if (ban.isAnnotationPresent(RadioButtonAnnotation.class)){
+		    	  RadioButtonAnnotation radio = ban.getAnnotation(RadioButtonAnnotation.class);
+				  ban.setAccessible(true);
+				  String nombre = radio.nombre();
+				  radioButton.setLabel(nombre);
+				  frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				  frame.getContentPane().add(radioButton);
+		      }
+		}  
 	}
 }
 
@@ -101,5 +114,13 @@ class MostrarBoton {
 	private int a;
 	
 	public void mostrarBoton(){}
+	
+}
+
+class MostrarRadio {
+	@RadioButtonAnnotation(nombre = "radio button")
+	private boolean ban;
+	
+	public void mostrarRadio(){}
 	
 }
