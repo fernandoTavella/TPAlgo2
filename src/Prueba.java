@@ -12,8 +12,11 @@ import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+
+import anotaciones.AnteriorAnnotation;
 import anotaciones.BotonAnnotation;
 import anotaciones.RadioButtonAnnotation;
+import anotaciones.SiguienteAnnotation;
 import anotaciones.TTextArea;
 
 public class Prueba {
@@ -48,8 +51,8 @@ public class Prueba {
 		      }
 		}
 		//Muestra en base a los metodos de la clase
-		  Method[] methods = ShowAnotacion.class.getMethods();
-		  for (Method m : methods){
+		  Field[] campos = ShowAnotacion.class.getDeclaredFields();
+		  for (Field m : campos){
 		          if (m.isAnnotationPresent(TTextArea.class)){}
 				  	if (m.isAnnotationPresent(BotonAnnotation.class)){
 						BotonAnnotation botonazo = m.getAnnotation(BotonAnnotation.class);
@@ -80,6 +83,7 @@ public class Prueba {
 
 class ShowAnotacion{
 	
+	
 	@TTextArea(label="Text Area")
 	private String probando;
 	
@@ -87,9 +91,13 @@ class ShowAnotacion{
 	public void showAnottation(){}
 	
 	@BotonAnnotation(nombre = "botonazo",posHorizontal=1, posVertical=2, ancho=2, largo=1)
-	public void mostrarBoton(){
-		System.out.println("boton click");
-	}
+	private String nombre;
+
+	@SiguienteAnnotation(nombre= "sig")
+	private String name;
+	
+	@AnteriorAnnotation(nombre="ant")
+	private String nombr;
 	
 	@RadioButtonAnnotation(nombre = "es alumno")
 	private boolean ban;

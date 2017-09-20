@@ -5,15 +5,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-
-
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 
 
-public @interface BotonAnnotation
-{
-		String nombre() default "submit";
+public @interface SiguienteAnnotation {
+		String nombre() default "Siguiente";
 		float posHorizontal() default 0;
 		float posVertical() default 0;
 		int ancho() default 0;
