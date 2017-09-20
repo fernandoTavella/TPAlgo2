@@ -14,12 +14,7 @@ import master.PantallaGeneral;
 public class BotonSubmit extends PantallaGeneral{
 	
 	
-	public static void inicializar(Field[] campos){
-		
-		
-		  for (Field m : campos){
-	          if (m.isAnnotationPresent(TTextArea.class)){}
-			  	if (m.isAnnotationPresent(BotonAnnotation.class)){
+	public static JButton inicializar(Field[] campos){
 					BotonAnnotation botonazo = m.getAnnotation(BotonAnnotation.class);
 					JButton boton = new JButton(botonazo.nombre());
 					boton.setVisible(true);
@@ -41,7 +36,4 @@ public class BotonSubmit extends PantallaGeneral{
 					});
 	}
 
-}
 
-	}
-}

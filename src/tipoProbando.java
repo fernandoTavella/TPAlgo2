@@ -7,7 +7,7 @@ public class tipoProbando {
 		
 	
 	PantallaGeneral nuevaPantalla = new PantallaGeneral();
-	nuevaPantalla.crearPantalla();
+	nuevaPantalla.crearPantalla("TestGral");
 	
 	
 	BotonSubmit nuevoBoton = new BotonSubmit();

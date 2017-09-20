@@ -49,6 +49,29 @@ public class Prueba {
 				  f.setAccessible(true);
 				  frame.getContentPane().add(radioButton);
 		      }
+		  	if (f.isAnnotationPresent(BotonAnnotation.class)){
+				BotonAnnotation botonazo = f.getAnnotation(BotonAnnotation.class);
+				JButton boton = new JButton(botonazo.nombre());
+				boton.setVisible(true);
+				float posicionX = botonazo.posHorizontal();
+				float posicionY= botonazo.posVertical();
+				int ancho = botonazo.ancho();
+				int largo = botonazo.largo();
+				Dimension tamaño= new Dimension(ancho,largo);
+				boton.setAlignmentX(posicionX);
+				boton.setAlignmentY(posicionY);
+				boton.setSize(tamaño);
+				boton.addActionListener(new ActionListener()
+				{
+					@Override
+					public void actionPerformed(ActionEvent e)
+					{
+						System.out.println("show");
+						
+					}
+				});
+				frame.getContentPane().add(boton);
+			}
 		}
 		//Muestra en base a los metodos de la clase
 		  Field[] campos = ShowAnotacion.class.getDeclaredFields();
