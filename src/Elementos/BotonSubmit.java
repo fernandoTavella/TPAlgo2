@@ -1,21 +1,26 @@
 package Elementos;
-
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.lang.reflect.Field;
 
-import javax.swing.JButton;
-import anotaciones.BotonAnnotation;
-import anotaciones.TTextArea;
+import javax.swing.*;
+
 import master.PantallaGeneral;
+import master.TestGral;
+import anotaciones.BotonAnnotation;
 
 
+@SuppressWarnings("serial")
 public class BotonSubmit extends PantallaGeneral{
-	
-	
-	public static JButton inicializar(Field[] campos){
-					BotonAnnotation botonazo = m.getAnnotation(BotonAnnotation.class);
+	@Override
+	public void inicializar(Field[] campos){
+
+			for(Field f : campos){
+				if (f.isAnnotationPresent(BotonAnnotation.class)){
+				
+					BotonAnnotation botonazo = f.getAnnotation(BotonAnnotation.class);
 					JButton boton = new JButton(botonazo.nombre());
 					boton.setVisible(true);
 					float posicionX = botonazo.posHorizontal();
@@ -26,14 +31,15 @@ public class BotonSubmit extends PantallaGeneral{
 					boton.setAlignmentX(posicionX);
 					boton.setAlignmentY(posicionY);
 					boton.setSize(tamaño);
-					boton.addActionListener(new ActionListener()		{
+					boton.addActionListener(new ActionListener(){
 						@Override
-						public void actionPerformed(ActionEvent e)
-						{
+						public void actionPerformed(ActionEvent e){
 							System.out.println("show");
-							
 						}
 					});
 	}
+}
+	}
+}
 
 

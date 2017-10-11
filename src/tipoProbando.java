@@ -3,11 +3,16 @@ import Elementos.*;
 import anotaciones.*;
 
 public class tipoProbando {
-	public static void main (String[] arr){
+	public static void main (String[] arr) {
 		
 	
 	PantallaGeneral nuevaPantalla = new PantallaGeneral();
-	nuevaPantalla.crearPantalla("TestGral");
+	try {
+		PantallaGeneral.crearPantalla("TestGral");
+	} catch (ClassNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	
 	
 	BotonSubmit nuevoBoton = new BotonSubmit();
