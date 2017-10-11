@@ -3,12 +3,10 @@ import Elementos.*;
 import anotaciones.*;
 
 public class tipoProbando {
-<<<<<<< HEAD
-	public static void main (String[] arr) {
-=======
-	public static void main (String[] arr) throws ClassNotFoundException{
->>>>>>> 13988202c118099fbcc909e9aabe6f6513e6c841
-		
+
+	
+	public static void main (String[] arr) throws Exception{
+	
 	
 	PantallaGeneral nuevaPantalla = new PantallaGeneral();
 	try {

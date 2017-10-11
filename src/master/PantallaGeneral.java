@@ -17,6 +17,8 @@ import Excepciones.FFormNotFoundException;
 import anotaciones.*;
 
 
+// Constante comunicacion entre pantalla general y dibujar -> cuando esté creando una pantalla siguiente," dibujar " va a comunicarse con pantalla general para gestionar los atributos de esa nueva clase, que a su vez luego se volvera a comunicar con dibujar para que dibuje la pantalla
+
 public class PantallaGeneral extends Component{
 	
 	static JFrame frame = null;
@@ -24,19 +26,27 @@ public class PantallaGeneral extends Component{
 	public static void crearPantalla(String nombreClase) throws Exception {
 		
 		Class<?> cls = Class.forName(nombreClase);
-<<<<<<< HEAD
 		
-		
-		JFrame frame = new JFrame("Test");
-		frame.setLayout(new GridLayout(5,1));
-		frame.setVisible(true);
-		frame.setSize(2200,200);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		cls.getDeclaredFields();
+
+		if(!cls.isAnnotationPresent(FForm.class)){
+			throw new FFormNotFoundException(nombreClase);
+		}else{
+			Dibujar pantalla = new Dibujar();
+			for(Field campo : cls.getDeclaredFields()){
+				pantalla.dibujar(campo, campo.getAnnotations()[0]);
+			}
+			FForm formName = cls.getAnnotation(FForm.class);
+			JFrame frame = new JFrame(formName.title());
+			frame.setLayout(new GridLayout(5,1));
+			frame.setVisible(true);
+			frame.setSize(2200,200);
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+		}
 	}
 	
 	public void agregarElemento(PantallaGeneral nuevoElemento){
-		Field[] campos = TestGral.class.getDeclaredFields();
+		Field[] campos = Formulario.class.getDeclaredFields();
 		nuevoElemento.inicializar(campos);
 		frame.getContentPane().add(nuevoElemento);
 		
@@ -44,21 +54,10 @@ public class PantallaGeneral extends Component{
 	
 	public void inicializar(Field[] campos){}
 	
-						
-	}
+}					
 	
-=======
-			if(!cls.isAnnotationPresent(FForm.class)){
-				throw new FFormNotFoundException(nombreClase);
-			}else{
-				FForm formName = cls.getAnnotation(FForm.class);
-				JFrame frame = new JFrame(formName.title());
-				frame.setLayout(new GridLayout(5,1));
-				frame.setVisible(true);
-				frame.setSize(2200,200);
-				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
-			}
-	}
+
+			
 	
 //	public void agregarElemento(PantallaGeneral nuevoElemento){
 //		Field[] campos = ShowAnotacion.class.getDeclaredFields();
@@ -76,5 +75,4 @@ public class PantallaGeneral extends Component{
 //		}
 //	}
 	
-}
->>>>>>> 13988202c118099fbcc909e9aabe6f6513e6c841
+

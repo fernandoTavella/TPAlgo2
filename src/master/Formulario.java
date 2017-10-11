@@ -1,6 +1,8 @@
 package master;
 
 import anotaciones.AnteriorAnnotation;
+
+
 import anotaciones.BotonAnnotation;
 import anotaciones.FForm;
 import anotaciones.IInput;
@@ -9,6 +11,10 @@ import anotaciones.RadioButton;
 import anotaciones.SiguienteAnnotation;
 import anotaciones.TTextArea;
 import master.PantallaGeneral;
+
+
+// boton siguiente va a mandar los campos de la clase CONTINUACION, que sera otra pantalla del usuario
+// @Siguiente(next="continuacion")
 
 @FForm(title="Demostracion")
 public class Formulario 
@@ -40,4 +46,5 @@ public class Formulario
 		public void mostrarRadio(){
 			
 		}
+
 }

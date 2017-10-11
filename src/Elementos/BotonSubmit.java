@@ -8,7 +8,6 @@ import java.lang.reflect.Field;
 import javax.swing.*;
 
 import master.PantallaGeneral;
-import master.TestGral;
 import anotaciones.BotonAnnotation;
 
 
