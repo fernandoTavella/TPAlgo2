@@ -3,7 +3,7 @@ import Elementos.*;
 import anotaciones.*;
 
 public class tipoProbando {
-	public static void main (String[] arr){
+	public static void main (String[] arr) throws ClassNotFoundException{
 		
 	
 	PantallaGeneral nuevaPantalla = new PantallaGeneral();
