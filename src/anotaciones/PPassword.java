@@ -7,8 +7,7 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-
-public @interface RadioButtonAnnotation
+public @interface PPassword
 {
-	String nombre() default "radio boton";
+	String label() default "";
 }
