@@ -20,7 +20,6 @@ import javax.swing.JTextArea;
 import anotaciones.AnteriorAnnotation;
 import anotaciones.BotonAnnotation;
 import anotaciones.RadioButton;
-import anotaciones.SiguienteAnnotation;
 import anotaciones.TTextArea;
 
 public class Prueba {
@@ -101,8 +100,6 @@ class ShowAnotacion{
 	@BotonAnnotation(nombre = "botonazo",posHorizontal=1, posVertical=2, ancho=2, largo=1)
 	private String nombre;
 
-	@SiguienteAnnotation(nombre= "sig")
-	private String name;
 	
 	@AnteriorAnnotation(nombre="ant")
 	private String nombr;

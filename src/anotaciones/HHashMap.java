@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface PPassword
+public @interface HHashMap
 {
-	String label() default "Password";
+		String label() default "Map";
 }

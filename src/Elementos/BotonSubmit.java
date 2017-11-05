@@ -7,12 +7,12 @@ import java.lang.reflect.Field;
 
 import javax.swing.*;
 
-import master.PantallaGeneral;
+import master.PantallaCreator;
 import anotaciones.BotonAnnotation;
 
 
 @SuppressWarnings("serial")
-public class BotonSubmit extends PantallaGeneral{
+public class BotonSubmit extends PantallaCreator{
 	@Override
 	public void inicializar(Field[] campos){
 

@@ -7,12 +7,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-
-
-public @interface SiguienteAnnotation {
-		String nombre() default "Siguiente";
-		float posHorizontal() default 0;
-		float posVertical() default 0;
-		int ancho() default 0;
-		int largo() default 0;
+public @interface LList{
+	String label() default "List";
 }

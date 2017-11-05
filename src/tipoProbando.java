@@ -1,4 +1,4 @@
-import master.PantallaGeneral;
+import master.PantallaCreator;
 import Elementos.*;
 import anotaciones.*;
 
@@ -8,9 +8,9 @@ public class tipoProbando {
 	public static void main (String[] arr) throws Exception{
 	
 	
-	PantallaGeneral nuevaPantalla = new PantallaGeneral();
+	PantallaCreator nuevaPantalla = new PantallaCreator();
 	try {
-		PantallaGeneral.crearPantalla("TestGral");
+		PantallaCreator.crearPantalla("TestGral");
 	} catch (ClassNotFoundException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
