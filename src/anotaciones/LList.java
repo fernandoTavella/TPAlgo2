@@ -8,5 +8,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface LList{
-	String label() default "List";
+	Class<?>[] datos() default {} ;
+	String label() default "list" ;
 }

@@ -6,12 +6,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
+public @interface CCheckBox {
 
-public @interface TextBoxAnnotation {
+		String label() default "";
 	
-	int largo() default 0;
-	String label() default "";
-	int ancho() default 0;
-
+		
 }

@@ -12,8 +12,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
@@ -25,13 +28,17 @@ import javax.swing.SwingConstants;
 
 import Excepciones.FFormNotFoundException;
 import algoii.tp.db.Alumno;
+import anotaciones.CCheckBox;
+import anotaciones.CCombo;
 import anotaciones.FForm;
 import anotaciones.HHashMap;
 import anotaciones.IInput;
+import anotaciones.LList;
 import anotaciones.PPassword;
 import anotaciones.RadioButton;
 import anotaciones.Siguiente;
 import anotaciones.TTextArea;
+import anotaciones.TextBoxAnnotation;
 
 
 // Constante comunicacion entre pantalla general y dibujar -> cuando esté creando una pantalla siguiente," dibujar " va a comunicarse con pantalla general para gestionar los atributos de esa nueva clase, que a su vez luego se volvera a comunicar con dibujar para que dibuje la pantalla
@@ -124,6 +131,49 @@ public class PantallaCreator extends Component{
 					table.setPreferredSize(new Dimension(240,320));
 					interPanel.add(table);
 				}
+				if(campo.isAnnotationPresent(LList.class))
+				{
+					LList lista = campo.getAnnotation(LList.class);
+					JLabel lbl= new JLabel(lista.label());
+					String[] arrayDatos = casteoDatos(lista.datos());
+					JList list = new JList(arrayDatos);
+					list.setVisible(true);
+					interPanel.add(lbl);
+					interPanel.add(list);
+					list.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+					JScrollPane panelDesplazamiento = new JScrollPane(list, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+					interPanel.add(panelDesplazamiento);
+				}
+				if(campo.isAnnotationPresent(TextBoxAnnotation.class)){
+					TextBoxAnnotation text = campo.getAnnotation(TextBoxAnnotation.class);
+					JLabel lbl = new JLabel(text.label());
+					JTextField textBox = new JTextField();
+					Dimension tamaño= new Dimension(text.ancho(),text.largo());
+					textBox.setPreferredSize(tamaño);
+					textBox.setVisible(true);
+					JScrollPane panelDesplazamiento = new JScrollPane(textBox, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+					interPanel.add(lbl);
+					interPanel.add(textBox);
+					interPanel.add(panelDesplazamiento);
+					
+				}if(campo.isAnnotationPresent(CCombo.class)){
+					CCombo comboBox = campo.getAnnotation(CCombo.class);
+					JComboBox comb = new JComboBox();
+					JLabel lbl = new JLabel(comboBox.label());
+					Class<?>[] elementos = comboBox.elementos();
+					for (Class<?> elemento : elementos){
+						comb.addItem(elemento);
+					}
+				    comb.setVisible(true);
+					interPanel.add(lbl);
+					interPanel.add(comb);
+				}
+				if(campo.isAnnotationPresent(CCheckBox.class)){
+					CCheckBox check = campo.getAnnotation(CCheckBox.class);
+					JCheckBox checkBox = new JCheckBox();
+					JLabel lbl = new JLabel (check.label());
+					interPanel.add(lbl);
+					interPanel.add(checkBox);
 
 			}
 			mainPanel.add(interPanel);
@@ -134,6 +184,7 @@ public class PantallaCreator extends Component{
 			Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 	        frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		}
 		}
 	}
 	
@@ -146,9 +197,19 @@ public class PantallaCreator extends Component{
 	
 	public void inicializar(Field[] campos){}
 	
-}					
 	
-
+String[] casteoDatos(Class<?>[] datos){
+	
+	String[] arrayDatos = {};
+	int i = 0;
+	for(Class<?> dato : datos){
+		arrayDatos[i] = dato.toString();
+		i++;
+		
+	}
+	return arrayDatos;
+}
+}
 			
 	
 //	public void agregarElemento(PantallaGeneral nuevoElemento){
